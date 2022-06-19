@@ -43,9 +43,9 @@ def chat_thread_logic(chat_context):
         seconds_in_day = 24*60*60
         seconds_in_two_h = 2*60*60
         seconds_five = 5
-        print("Спим " + str(seconds_five) + "секунд")
+        print("Спим " + str(seconds_in_two_h) + "секунд")
         strat_sleep = datetime.now()
-        time.sleep(seconds_five)
+        time.sleep(seconds_in_two_h)
         end_sleep = datetime.now()
         print("Спал " + str(end_sleep - strat_sleep) + " секундр")
         
