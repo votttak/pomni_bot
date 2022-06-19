@@ -41,8 +41,9 @@ def chat_thread_logic(chat_context):
         seconds_in_week = 604800
         seconds_in_day = 24*60*60
         seconds_in_two_h = 2*60*60
+        seconds_five = 5
         print("Спим " + str(seconds_in_two_h) + "секунд")
-        time.sleep(seconds_in_two_h)
+        time.sleep(seconds_five)
         
         successfully_forwaded = False
         
@@ -57,6 +58,7 @@ def chat_thread_logic(chat_context):
         
 def try_forward_message_id(chat_id, message_id):
     try:
+        print("пробую откравить сообщение")
         bot.forward_message(468918244, chat_id, message_id)
         return True
     except:
