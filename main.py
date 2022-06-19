@@ -6,6 +6,7 @@ bot = telebot.TeleBot('5540979383:AAHjJMwpp4Jlb6NhfwO1CqkGG23gCvjMob0')
 import threading
 import time
 import random
+from datetime import datetime
 
 chats_dict = {} # chat_id : (Thread, ChatContext)
 
@@ -42,8 +43,11 @@ def chat_thread_logic(chat_context):
         seconds_in_day = 24*60*60
         seconds_in_two_h = 2*60*60
         seconds_five = 5
-        print("Спим " + str(seconds_in_two_h) + "секунд")
+        print("Спим " + str(seconds_five) + "секунд")
+        strat_sleep = datetime.now()
         time.sleep(seconds_five)
+        end_sleep = datetime.now()
+        print("Спал " + str(end_sleep - strat_sleep) + " секундр")
         
         successfully_forwaded = False
         
