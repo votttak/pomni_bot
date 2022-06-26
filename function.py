@@ -34,7 +34,10 @@ def wait_if_sleeping_time():
 
 ## waits if day off [saturday] ##
 def wait_if_day_off():
-    week_day = datetime.today().weekday()
+    tz = pytz.timezone('Europe/Berlin')
+    berlin_now = datetime.now(tz)
+    week_day = berlin_now.weekday()
+    print(week_day)
     if week_day == 5:
         now = datetime.now()
         time_string = now.strftime("%H:%M:%S")
