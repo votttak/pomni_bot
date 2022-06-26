@@ -1,14 +1,22 @@
 
 import time
-from datetime import datetime
+from datetime import datetime, timezone
+
+import pytz
 
 
 
 
 ## waits if time between 23:00 and 7:59 [sleeping time] ##
 def wait_if_sleeping_time():
-    now = datetime.now()
-    time_string = now.strftime("%H:%M:%S")
+    # now = datetime.now()
+    tz = pytz.timezone('Europe/Berlin')
+    berlin_now = datetime.now(tz)
+    time_string = berlin_now.strftime("%H:%M:%S")
+    print("time_string")
+    print(time_string)
+
+    
     hours = int(time_string[:2])
     minutes = int(time_string[3:5])
     if hours in [0, 1, 2, 4, 5, 6, 7, 23]:
