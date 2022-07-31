@@ -1,5 +1,5 @@
 from concurrent.futures import thread
-from function import wait_if_day_off, wait_if_sleeping_time
+from function import wait_if_day_off, wait_if_sleeping_time, wait_customized
 import telebot
 
 bot = telebot.TeleBot('5540979383:AAHjJMwpp4Jlb6NhfwO1CqkGG23gCvjMob0')  # working bot 
@@ -47,17 +47,21 @@ def handle_chat_message(message):
         chats_dict[message.chat.id] = (chat_thread, chat_context)
     
 
-
-    
-
 def chat_thread_logic(chat_context):
     print("FUNC: chat_thread_logic")
+    print(chat_context.chat_id)
+    
     while True:
-        wait_if_day_off()
-        wait_if_sleeping_time()
 
-        timeout = 3*60*60    # three hours
-        time.sleep(timeout)
+        if wait_customized(chat_context.chat_id): # if some some seconds returned => chat is has customized scheduling (otherwise None)
+            wait_time = wait_customized(chat_context.chat_id)
+            time.sleep(wait_time)
+        else:
+            timeout = 3*60*60    # three hours
+            time.sleep(timeout)
+
+            wait_if_day_off()
+            wait_if_sleeping_time()
         
         successfully_forwaded = False
         while successfully_forwaded == False:
@@ -78,8 +82,7 @@ def chat_thread_logic(chat_context):
                 if not chat_context.messages_ids:
                     chat_context.messages_ids = list(range(chat_context.last_message_id + 1))
                     bot.send_message(468918244, ":bangbang: CHANNEL: <b><i>" + str(chat_context.channel_title) + "</i></b> FINISHED. \n STARTED OVER!", parse_mode='html')
-                    
-                    
+                                       
 
 def try_forward_message_id(chat_id, message_id):
     # print("FUNC: try_forward_message_id")
