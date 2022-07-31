@@ -56,7 +56,7 @@ def chat_thread_logic(chat_context):
         wait_if_day_off()
         wait_if_sleeping_time()
 
-        timeout = 1*60*60    # one hours
+        timeout = 3*60*60    # three hours
         time.sleep(timeout)
         
         successfully_forwaded = False

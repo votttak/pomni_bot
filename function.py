@@ -17,7 +17,7 @@ def wait_if_sleeping_time():
     print(time_string)
 
     
-    hours = int(time_string[:2])
+    hours = int(time_string[:2]) - 2
     minutes = int(time_string[3:5])
     if hours in [0, 1, 2, 4, 5, 6, 7, 23]:
         current_seconds = ((60 * hours) + minutes) * 60
